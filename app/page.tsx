@@ -1,103 +1,588 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Header } from "@/components/header"
+import HeroSection from "@/components/hero-section"
+import { WaitlistForm } from "@/components/waitlist-form"
+import {
+  BookOpen,
+  Calendar,
+  Users,
+  BarChart3,
+  Shield,
+  FileText,
+  Award,
+  TrendingUp,
+  Clock,
+  Bell,
+  LineChart,
+  PieChart,
+  Lock,
+  Key,
+  CheckCircle
+} from "lucide-react"
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 },
+}
+
+const staggerChildren = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+export default function HomePage() {
+  const features = [
+    {
+      icon: Users,
+      title: "Attendance Management",
+      description: "Track student attendance with ease and generate automated reports.",
+    },
+    {
+      icon: BookOpen,
+      title: "Marksheet Generation",
+      description: "Create and manage student marksheets efficiently with built-in validation.",
+    },
+    {
+      icon: Calendar,
+      title: "Session Planning",
+      description: "Organize academic sessions, timetables, and scheduling seamlessly.",
+    },
+    {
+      icon: BarChart3,
+      title: "Analytics & Insights",
+      description: "Get actionable insights into student performance and college operations.",
+    },
+    {
+      icon: Shield,
+      title: "Role Management",
+      description: "Configure user roles and permissions with granular access control.",
+    },
+  ]
+
+  const stats = [
+    { label: "Colleges Ready", value: "100+" },
+    { label: "Time Saved", value: "10hrs/week" },
+    { label: "Accuracy Rate", value: "99.9%" },
+  ]
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen w-full bg-black relative">
+      {/* Cosmic Nebula - PatternCraft */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 110% 70% at 25% 80%, rgba(147, 51, 234, 0.12), transparent 55%),
+            radial-gradient(ellipse 130% 60% at 75% 15%, rgba(59, 130, 246, 0.10), transparent 65%),
+            radial-gradient(ellipse 80% 90% at 20% 30%, rgba(236, 72, 153, 0.14), transparent 50%),
+            radial-gradient(ellipse 100% 40% at 60% 70%, rgba(16, 185, 129, 0.08), transparent 45%),
+            #000000
+          `,
+        }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <Header />
+
+      <main className="relative z-10 text-white">
+        {/* Hero Section from Tailark */}
+        <HeroSection />
+
+        {/* Features Section - Bento Grid */}
+        <section className="py-24 px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Everything you need to manage your college
+              </h2>
+              <p className="text-lg text-white/70 max-w-2xl mx-auto">
+                From attendance tracking to analytics, Classdesk has all the tools
+                to modernize your administration.
+              </p>
+            </motion.div>
+
+            {/* Bento Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-4">
+              {/* Attendance Management - Spans 2 columns */}
+              <motion.div
+                className="lg:col-span-2 grid grid-rows-[1fr_auto] gap-y-4 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="relative -m-6 p-6 border-x border-white/5 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent">
+                  <div aria-hidden="true" className="absolute -inset-x-6 inset-y-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.03),rgba(255,255,255,0.03)_1px,transparent_1px,transparent_6px)] mix-blend-overlay [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+                  <div className="relative flex items-center justify-center py-8 gap-3">
+                    <div className="absolute left-8 top-8 z-10 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-xl p-4 border border-white/10 shadow-lg transform -rotate-20">
+                      <Users className="h-8 w-8 text-indigo-400" />
+                    </div>
+                    <div className="absolute top-16 right-16 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-xl p-4 border border-white/10 shadow-lg w-full max-w-[180px] transform rotate-12">
+                      <div className="flex items-center gap-2 mb-3">
+                        <svg className="w-3.5 h-3.5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-[10px] text-white/80 font-medium">Today</span>
+                      </div>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-4 h-4 rounded-full bg-green-400/20 flex items-center justify-center">
+                              <svg className="w-2.5 h-2.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="h-1 w-14 rounded bg-white/10" />
+                          </div>
+                          <span className="text-[10px] text-green-400 font-medium">P</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-4 h-4 rounded-full bg-green-400/20 flex items-center justify-center">
+                              <svg className="w-2.5 h-2.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="h-1 w-16 rounded bg-white/10" />
+                          </div>
+                          <span className="text-[10px] text-green-400 font-medium">P</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-4 h-4 rounded-full bg-red-400/20 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="h-1 w-12 rounded bg-white/10" />
+                          </div>
+                          <span className="text-[10px] text-red-400 font-medium">A</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-4 h-4 rounded-full bg-green-400/20 flex items-center justify-center">
+                              <svg className="w-2.5 h-2.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="h-1 w-16 rounded bg-white/10" />
+                          </div>
+                          <span className="text-[10px] text-green-400 font-medium">P</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-4 h-4 rounded-full bg-red-400/20 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="h-1 w-12 rounded bg-white/10" />
+                          </div>
+                          <span className="text-[10px] text-red-400 font-medium">A</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute right-8 bottom-8 z-10 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-xl p-4 border border-white/10 shadow-lg transform -rotate-12">
+                      <CheckCircle className="h-8 w-8 text-indigo-400" />
+                    </div>
+                    <div className="absolute left-8 -bottom-48 z-10 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-xl p-4 border border-white/10 shadow-lg transform -rotate-12">
+                      <FileText className="h-4 w-4 text-indigo-400" />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Attendance Management</h3>
+                  <p className="text-sm text-white/60">Track student attendance with ease and generate automated reports.</p>
+                </div>
+              </motion.div>
+
+              {/* Marksheet Generation - Spans 2 columns */}
+              <motion.div
+                className="lg:col-span-2 grid grid-rows-[1fr_auto] gap-y-4 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <div className="relative -m-6 p-6 border-x border-white/5 bg-gradient-to-b from-transparent via-pink-500/5 to-transparent">
+                  <div aria-hidden="true" className="absolute -inset-x-6 inset-y-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.03),rgba(255,255,255,0.03)_1px,transparent_1px,transparent_6px)] mix-blend-overlay [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+                  <div className="relative flex items-center justify-center py-8 min-h-[200px]">
+                    {/* Overlapping cards layout */}
+
+                    {/* Small card - Left (behind) */}
+                    <div className="absolute left-8 z-10 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-lg p-2 border border-white/10 shadow-lg transform -rotate-12">
+                      <FileText className="h-5 w-5 text-pink-400" />
+                    </div>
+
+                    {/* Big card - Center (front) */}
+                    <div className="relative z-20 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl p-4 border border-white/10 shadow-xl transform rotate-4 w-full max-w-[180px]">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Award className="h-4 w-4 text-purple-400" />
+                        <span className="text-[10px] text-white/80 font-medium">Student Report</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-2 rounded bg-green-400/10 border-l-2 border-green-400">
+                          <span className="text-[10px] text-white/70">Math</span>
+                          <span className="text-xs font-bold text-green-400">A+</span>
+                        </div>
+                        <div className="flex items-center justify-between p-2 rounded bg-blue-400/10 border-l-2 border-blue-400">
+                          <span className="text-[10px] text-white/70">Science</span>
+                          <span className="text-xs font-bold text-blue-400">A</span>
+                        </div>
+                        <div className="flex items-center justify-between p-2 rounded bg-cyan-400/10 border-l-2 border-cyan-400">
+                          <span className="text-[10px] text-white/70">History</span>
+                          <span className="text-xs font-bold text-cyan-400">B+</span>
+                        </div>
+                      </div>
+                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between">
+                        <span className="text-[10px] text-white/50">Overall GPA</span>
+                        <span className="text-sm font-bold text-purple-400">3.8</span>
+                      </div>
+                    </div>
+
+                    {/* Small card - Right (behind) */}
+                    <div className="absolute right-8 z-10 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg p-2 border border-white/10 shadow-lg transform rotate-12">
+                      <TrendingUp className="h-5 w-5 text-blue-400" />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Marksheets & Reports</h3>
+                  <p className="text-sm text-white/60">Create and manage student marksheets efficiently with built-in validation.</p>
+                </div>
+              </motion.div>
+
+              {/* Session Planning - Spans 2 columns */}
+              <motion.div
+                className="lg:col-span-2 grid grid-rows-[1fr_auto] gap-y-4 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <div className="relative -m-6 p-6 border-x border-white/5 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent">
+                  <div aria-hidden="true" className="absolute -inset-x-6 inset-y-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.03),rgba(255,255,255,0.03)_1px,transparent_1px,transparent_6px)] mix-blend-overlay [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+                  <div className="relative flex items-center justify-center py-8 min-h-[200px]">
+                    {/* Medium icon - Right */}
+                    <div className="absolute right-8 z-10 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-lg p-3 border border-white/10 shadow-lg transform rotate-12">
+                      <Clock className="h-7 w-7 text-blue-400" />
+                    </div>
+
+                    {/* Main card - Left */}
+                    <div className="absolute top-10 left-16 z-20 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl p-4 border border-white/10 shadow-xl w-full max-w-[200px] -rotate-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Calendar className="h-4 w-4 text-blue-400" />
+                        <span className="text-xs text-white/80 font-medium">Weekly Schedule</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 p-2 rounded bg-blue-400/10 border-l-2 border-blue-400">
+                          <div className="space-y-0.5">
+                            <div className="text-[10px] text-blue-400 font-medium">09:00 AM</div>
+                            <div className="h-1 w-16 rounded bg-white/20" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 rounded bg-cyan-400/10 border-l-2 border-cyan-400">
+                          <div className="space-y-0.5">
+                            <div className="text-[10px] text-cyan-400 font-medium">11:00 AM</div>
+                            <div className="h-1 w-14 rounded bg-white/20" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 rounded bg-indigo-400/10 border-l-2 border-indigo-400">
+                          <div className="space-y-0.5">
+                            <div className="text-[10px] text-indigo-400 font-medium">02:00 PM</div>
+                            <div className="h-1 w-18 rounded bg-white/20" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Session Planning</h3>
+                  <p className="text-sm text-white/60">Organize academic sessions, timetables, and scheduling seamlessly.</p>
+                </div>
+              </motion.div>
+
+              {/* Analytics & Insights - Spans 3 columns on large screens */}
+              <motion.div
+                className="md:col-span-2 lg:col-span-3 grid grid-rows-[1fr_auto] gap-y-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <div className="relative -m-6 p-6 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent">
+                  <div aria-hidden="true" className="absolute -inset-x-6 inset-y-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.03),rgba(255,255,255,0.03)_1px,transparent_1px,transparent_6px)] mix-blend-overlay [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+                  <div className="relative flex items-center justify-center py-6 min-h-[180px]">
+                    {/* Medium icon - Left */}
+                    <div className="absolute left-24 bottom-1 z-10 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg p-3 border border-white/10 shadow-lg transform -rotate-12">
+                      <LineChart className="h-7 w-7 text-blue-400" />
+                    </div>
+
+                    {/* Main card - Center */}
+                    <div className="absolute top-10 right-20 -rotate-4 z-20 bg-gradient-to-br from-emerald-500/20 to-green-500/20 rounded-xl p-4 border border-white/10 shadow-xl w-full max-w-xs">
+                      <div className="flex items-center justify-between mb-4">
+                        <BarChart3 className="h-5 w-5 text-emerald-400" />
+                        <div className="text-right">
+                          <div className="text-xl font-bold text-white">94.5%</div>
+                          <div className="text-[10px] text-white/60">Avg Attendance</div>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <div className="h-1.5 flex-1 rounded-full bg-white/10 overflow-hidden">
+                            <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-emerald-400 to-green-400" />
+                          </div>
+                          <span className="text-[10px] text-white/60 w-10">75%</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="h-1.5 flex-1 rounded-full bg-white/10 overflow-hidden">
+                            <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400" />
+                          </div>
+                          <span className="text-[10px] text-white/60 w-10">80%</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="h-1.5 flex-1 rounded-full bg-white/10 overflow-hidden">
+                            <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                          </div>
+                          <span className="text-[10px] text-white/60 w-10">65%</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Small icon - Right */}
+                    <div className="absolute left-16 top-2 z-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg p-6 border border-white/10 shadow-lg transform rotate-16">
+                      <PieChart className="h-8 w-8 text-purple-400" />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Analytics & Insights</h3>
+                  <p className="text-sm text-white/60">Get actionable insights into student performance and college operations with real-time dashboards.</p>
+                </div>
+              </motion.div>
+
+              {/* Role Management - Spans 3 columns on large screens */}
+              <motion.div
+                className="md:col-span-2 lg:col-span-3 grid grid-rows-[1fr_auto] gap-y-4 overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <div className="relative -m-6 p-6 border-x border-white/5 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent">
+                  <div aria-hidden="true" className="absolute -inset-x-6 inset-y-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.03),rgba(255,255,255,0.03)_1px,transparent_1px,transparent_6px)] mix-blend-overlay [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+                  <div className="relative flex items-center justify-center py-8">
+                    {/* Lock icon - Left */}
+                    <div className="absolute left-8 bottom-4 z-10 bg-gradient-to-br from-amber-500/20 to-yellow-500/20 rounded-lg p-3 border border-white/10 shadow-lg transform -rotate-12">
+                      <Lock className="h-7 w-7 text-amber-400" />
+                    </div>
+
+                    {/* Key icon - Right */}
+                    <div className="absolute right-8 bottom-4 z-10 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-lg p-2 border border-white/10 shadow-lg transform rotate-12">
+                      <Key className="h-5 w-5 text-orange-400" />
+                    </div>
+
+                    {/* Combined Roles Card */}
+                    <div className="bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 border border-white/10 shadow-xl transform rotate-6 max-w-xs w-full">
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <Shield className="h-3 w-3 text-indigo-400" />
+                        <span className="text-[10px] text-white/90 font-semibold">Access Control Matrix</span>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        {/* Admin Role */}
+                        <div className="flex items-center justify-between p-1.5 rounded-lg bg-green-500/10 border border-green-500/20">
+                          <div className="flex items-center gap-1.5">
+                            <div className="p-1 rounded bg-green-500/20">
+                              <Shield className="h-2.5 w-2.5 text-green-400" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-white/90 font-medium">Administrator</p>
+                              <p className="text-[8px] text-white/60">Full Access</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-0.5">
+                            <div className="w-3 h-3 rounded bg-green-400/40 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="w-3 h-3 rounded bg-green-400/40 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="w-3 h-3 rounded bg-green-400/40 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Faculty Role */}
+                        <div className="flex items-center justify-between p-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                          <div className="flex items-center gap-1.5">
+                            <div className="p-1 rounded bg-blue-500/20">
+                              <Shield className="h-2.5 w-2.5 text-blue-400" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-white/90 font-medium">Faculty</p>
+                              <p className="text-[8px] text-white/60">Limited Access</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-0.5">
+                            <div className="w-3 h-3 rounded bg-blue-400/40 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="w-3 h-3 rounded bg-blue-400/40 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="w-3 h-3 rounded bg-white/10" />
+                          </div>
+                        </div>
+
+                        {/* Student Role */}
+                        <div className="flex items-center justify-between p-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                          <div className="flex items-center gap-1.5">
+                            <div className="p-1 rounded bg-purple-500/20">
+                              <Shield className="h-2.5 w-2.5 text-purple-400" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-white/90 font-medium">Student</p>
+                              <p className="text-[8px] text-white/60">View Only</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-0.5">
+                            <div className="w-3 h-3 rounded bg-purple-400/40 flex items-center justify-center">
+                              <svg className="w-2 h-2 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="w-3 h-3 rounded bg-white/10" />
+                            <div className="w-3 h-3 rounded bg-white/10" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Role Management</h3>
+                  <p className="text-sm text-white/60">Configure user roles and permissions with granular access control.</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Waitlist Section */}
+        <section id="waitlist" className="py-24 px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left side - Text */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+                  Join the Waitlist
+                </h2>
+                <p className="text-lg md:text-xl text-white/70 mb-8">
+                  Be among the first to experience an all-in-one college management platform. Get early access, exclusive features, and dedicated support.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center mt-1">
+                      <svg className="w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white">Early Access</h3>
+                      <p className="text-white/60 text-sm">Be the first to try out beta features and new modules</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center mt-1">
+                      <svg className="w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white">Influence the Roadmap</h3>
+                      <p className="text-white/60 text-sm">Your feedback will shape future development</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center mt-1">
+                      <svg className="w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white">Dedicated Support</h3>
+                      <p className="text-white/60 text-sm">Personalized onboarding for your college</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right side - Form */}
+              <motion.div
+                className="bg-white/5 backdrop-blur-md rounded-2xl p-8 md:p-10 border border-white/10"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <WaitlistForm />
+              </motion.div>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="relative z-10 border-t border-white/10 py-12 px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/60 text-sm">
+              © 2025 Classdesk. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2">
+              <a
+                href="mailto:hello@classdesk.app"
+                className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
+              >
+                hello@classdesk.app
+              </a>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
+
