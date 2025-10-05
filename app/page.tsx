@@ -1,13 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
 import HeroSection from "@/components/hero-section"
 import { WaitlistForm } from "@/components/waitlist-form"
 import {
-  BookOpen,
   Calendar,
   Users,
   BarChart3,
@@ -16,7 +13,6 @@ import {
   Award,
   TrendingUp,
   Clock,
-  Bell,
   LineChart,
   PieChart,
   Lock,
@@ -24,54 +20,7 @@ import {
   CheckCircle
 } from "lucide-react"
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-}
-
-const staggerChildren = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
 export default function HomePage() {
-  const features = [
-    {
-      icon: Users,
-      title: "Attendance Management",
-      description: "Track student attendance with ease and generate automated reports.",
-    },
-    {
-      icon: BookOpen,
-      title: "Marksheet Generation",
-      description: "Create and manage student marksheets efficiently with built-in validation.",
-    },
-    {
-      icon: Calendar,
-      title: "Session Planning",
-      description: "Organize academic sessions, timetables, and scheduling seamlessly.",
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics & Insights",
-      description: "Get actionable insights into student performance and college operations.",
-    },
-    {
-      icon: Shield,
-      title: "Role Management",
-      description: "Configure user roles and permissions with granular access control.",
-    },
-  ]
-
-  const stats = [
-    { label: "Colleges Ready", value: "100+" },
-    { label: "Time Saved", value: "10hrs/week" },
-    { label: "Accuracy Rate", value: "99.9%" },
-  ]
 
   return (
     <div className="min-h-screen w-full bg-white dark:bg-black relative">
