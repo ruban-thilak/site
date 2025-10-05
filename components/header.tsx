@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Logo } from "@/components/logo"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -24,7 +25,7 @@ export function Header() {
       transition={{ duration: 0.3 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-black/50 backdrop-blur-xl shadow-lg"
+          ? "bg-black/50 dark:bg-black/50 bg-white/80 backdrop-blur-xl shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -42,9 +43,9 @@ export function Header() {
           >
             <Link href="/" className="flex items-center gap-2 group">
               <Logo className="h-8 w-8" />
-              <span className="text-lg font-poppins font-black text-secondary">
+              <p className="text-lg mt-0.5 font-poppins font-black text-gray-900 dark:text-white">
                 Classdesk
-              </span>
+              </p>
             </Link>
           </motion.div>
 
@@ -55,11 +56,12 @@ export function Header() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center gap-2"
           >
+            <ThemeToggle />
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-white/10 hover:text-white hidden sm:flex"
+              className="text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white hidden sm:flex"
             >
               <Link href="/roadmap">Roadmap</Link>
             </Button>

@@ -125,10 +125,10 @@ const StatusBadge = ({ status }: { status: RoadmapItem["status"] }) => {
 
 export default function RoadmapPage() {
   return (
-    <div className="min-h-screen w-full bg-black relative">
-      {/* Cosmic Nebula - PatternCraft */}
+    <div className="min-h-screen w-full bg-white dark:bg-black relative">
+      {/* Cosmic Nebula - PatternCraft (Dark Mode Only) */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 dark:block hidden"
         style={{
           background: `
             radial-gradient(ellipse 110% 70% at 25% 80%, rgba(147, 51, 234, 0.12), transparent 55%),
@@ -140,9 +140,20 @@ export default function RoadmapPage() {
         }}
       />
 
+      {/* Light Mode Background */}
+      <div
+        className="absolute inset-0 z-0 dark:hidden block"
+        style={{
+          background: `
+            radial-gradient(ellipse at top, #f0f9ff 0%, #ffffff 50%),
+            linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%)
+          `,
+        }}
+      />
+
       <Header />
 
-      <main className="relative z-10 pt-24 pb-20 px-6 lg:px-8 text-white">
+      <main className="relative z-10 pt-24 pb-20 px-6 lg:px-8 text-gray-900 dark:text-white">
         <div className="mx-auto max-w-5xl">
           {/* Hero Section */}
           <motion.div
@@ -152,16 +163,15 @@ export default function RoadmapPage() {
             variants={staggerChildren}
           >
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6"
                 variants={fadeInUp}
               >
-                Classdesk{" "}
                 <span className="bg-gradient-to-r from-indigo-400 to-blue-400 bg-clip-text text-transparent">
                   Product Roadmap
                 </span>
               </motion.h1>
               <motion.p
-                className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto"
+                className="text-lg md:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto"
                 variants={fadeInUp}
               >
                 See what&apos;s coming next as we build the future of college
@@ -177,7 +187,7 @@ export default function RoadmapPage() {
             variants={staggerChildren}
           >
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-400/30 via-blue-400/30 to-transparent hidden md:block" />
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-300 dark:from-indigo-400/30 via-blue-300 dark:via-blue-400/30 to-transparent hidden md:block" />
 
             {roadmapItems.map((item, index) => {
               const Icon = item.icon
@@ -190,21 +200,21 @@ export default function RoadmapPage() {
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-6 top-8 hidden md:block">
-                    <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${item.color} ring-4 ring-black/50`} />
+                    <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${item.color} ring-4 ring-white/50 dark:ring-black/50`} />
                   </div>
 
                   {/* Content Card */}
-                  <div className="md:ml-20 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="md:ml-20 bg-white dark:bg-white/5 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/10 p-8 hover:bg-gray-50 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                       <div className="flex items-start gap-4">
                         <div className={`bg-gradient-to-br ${item.color} rounded-lg p-3 flex-shrink-0`}>
                           <Icon className="h-6 w-6 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-white/60 mb-1">
+                          <p className="text-sm font-medium text-gray-600 dark:text-white/60 mb-1">
                             {item.quarter}
                           </p>
-                          <h3 className="text-2xl font-bold text-white mb-2">
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             {item.title}
                           </h3>
                         </div>
@@ -216,7 +226,7 @@ export default function RoadmapPage() {
                       {item.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
-                          className="flex items-start gap-3 text-white/70"
+                          className="flex items-start gap-3 text-gray-600 dark:text-white/70"
                         >
                           <div className="flex-shrink-0 mt-1">
                             <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${item.color}`} />
@@ -233,7 +243,7 @@ export default function RoadmapPage() {
 
           {/* CTA Section */}
           <motion.div
-            className="mt-20 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 text-center text-white border border-white/20"
+            className="mt-20 bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-500/20 dark:to-blue-500/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 text-center text-gray-900 dark:text-white border border-indigo-200 dark:border-white/20"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -241,14 +251,14 @@ export default function RoadmapPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Want to shape our roadmap?
             </h2>
-            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 dark:text-white/80 mb-8 max-w-2xl mx-auto">
               Join the waitlist and share your feedback with us. Your input will
               help us prioritize features that matter most to colleges.
             </p>
             <Button
               asChild
               size="lg"
-              className="bg-white text-indigo-600 hover:bg-indigo-50 font-semibold"
+              className="bg-indigo-600 dark:bg-white text-white dark:text-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-50 font-semibold"
             >
               <Link href="/#waitlist">Join Waitlist</Link>
             </Button>
